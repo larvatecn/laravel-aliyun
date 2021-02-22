@@ -1,0 +1,40 @@
+{
+    "name": "larva/laravel-aliyun",
+    "description": "This is a Laravel expansion for the Aliyun.",
+    "keywords": [
+        "Larva",
+        "laravel",
+        "aliyun"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "ext-simplexml": "*",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-libxml": "*",
+        "illuminate/support": "^5.0 || ^6.0 || ^7.0 || ^8.0",
+        "illuminate/bus": "^5.0 || ^6.0 || ^7.0 || ^8.0",
+        "illuminate/queue": "^5.0 || ^6.0 || ^7.0 || ^8.0",
+        "guzzlehttp/guzzle": "^6.5 || ^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Larva\\Aliyun\\": "src"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Larva\\Aliyun\\AliyunServiceProvider"
+            ],
+            "aliases": {
+                "Aliyun": "Larva\\Aliyun\\Aliyun"
+            }
+        }
+    },
+    "prefer-stable": true
+}
