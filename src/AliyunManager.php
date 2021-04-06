@@ -85,7 +85,7 @@ class AliyunManager extends Manager
      */
     public function createCloudPushDriver()
     {
-        $config = $this->getConfig('cloudPush');
+        $config = $this->getConfig('cloudpush');
         return new Services\CloudPush([
             'accessId' => $config['access_id'],
             'accessKey' => $config['access_key'],

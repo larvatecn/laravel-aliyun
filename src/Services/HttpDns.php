@@ -5,7 +5,6 @@
  * @license http://www.larvacent.com/license/
  */
 
-
 namespace Larva\Aliyun\Services;
 
 use GuzzleHttp\HandlerStack;
