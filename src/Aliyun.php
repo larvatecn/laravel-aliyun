@@ -9,10 +9,11 @@
 namespace Larva\Aliyun;
 
 use Illuminate\Support\Facades\Facade;
+use Larva\Aliyun\Services\SnSu;
 
 /**
  * Class Sms
- * @mixin AliyunManage
+ * @mixin AliyunManager
  * @author Tongle Xu <xutongle@gmail.com>
  */
 class Aliyun extends Facade
@@ -25,5 +26,14 @@ class Aliyun extends Facade
     protected static function getFacadeAccessor()
     {
         return 'aliyun';
+    }
+
+    /**
+     * 获取 snSu
+     * @return SnSu
+     */
+    public static function snsu()
+    {
+        return static::getFacadeRoot()->with('snSu');
     }
 }

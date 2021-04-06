@@ -22,7 +22,7 @@ class AliyunServiceProvider extends ServiceProvider
         $this->setupConfig();
 
         $this->app->singleton('aliyun', function () {
-            return new AliyunManage($this->app);
+            return new AliyunManager($this->app);
         });
     }
 
