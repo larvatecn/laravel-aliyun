@@ -1,0 +1,93 @@
+<?php
+/**
+ * This is NOT a freeware, use is subject to license terms.
+ *
+ * @copyright Copyright (c) 2010-2099 Jinan Larva Information Technology Co., Ltd.
+ * @link http://www.larva.com.cn/
+ */
+
+namespace Larva\Aliyun\Jobs\Sms;
+
+use AlibabaCloud\Client\Exception\ClientException;
+use AlibabaCloud\Client\Exception\ServerException;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Larva\Aliyun\AliyunHelper;
+
+/**
+ * 发送手机短信
+ * @author Tongle Xu <xutongle@gmail.com>
+ */
+class SendSmsJob implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable;
+
+    /**
+     * 任务可以尝试的最大次数。
+     *
+     * @var int
+     */
+    public $tries = 2;
+
+    /**
+     * @var array|string
+     */
+    protected $phoneNumbers;
+
+    /**
+     * @var string
+     */
+    protected string $templateCode;
+
+    /**
+     * @var array|string
+     */
+    protected $templateParam;
+
+    /**
+     * @var string
+     */
+    protected string $signName;
+
+    /**
+     * @var string|null
+     */
+    protected string $smsUpExtendCode;
+
+    /**
+     * @var string|null
+     */
+    protected string $outId;
+
+    /**
+     * @param string|array $phoneNumbers
+     * @param string $templateCode
+     * @param string|array $templateParam JSON格式的参数
+     * @param string $signName
+     * @param string|null $smsUpExtendCode
+     * @param string|null $outId
+     */
+    public function __construct($phoneNumbers, string $templateCode, $templateParam, string $signName, string $smsUpExtendCode = null, string $outId = null)
+    {
+        $this->phoneNumbers = $phoneNumbers;
+        $this->templateCode = $templateCode;
+        $this->templateParam = $templateParam;
+        $this->signName = $signName;
+        $this->smsUpExtendCode = $smsUpExtendCode;
+        $this->outId = $outId;
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     * @throws ClientException
+     * @throws ServerException
+     */
+    public function handle()
+    {
+        AliyunHelper::sendSms($this->phoneNumbers, $this->templateCode, $this->templateParam, $this->signName, $this->smsUpExtendCode, $this->outId);
+    }
+}
