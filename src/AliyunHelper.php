@@ -11,6 +11,7 @@ namespace Larva\Aliyun;
 use AlibabaCloud\Client\Exception\ClientException;
 use AlibabaCloud\Client\Exception\ServerException;
 use AlibabaCloud\Client\Result\Result;
+use AlibabaCloud\Dysmsapi\Dysmsapi;
 use AlibabaCloud\Snsuapi\Snsuapi;
 
 /**
@@ -19,6 +20,41 @@ use AlibabaCloud\Snsuapi\Snsuapi;
  */
 class AliyunHelper
 {
+    /**
+     * 发送短信
+     * @param string|array $phoneNumbers
+     * @param string $templateCode
+     * @param string|array $templateParam JSON格式的参数
+     * @param string $signName
+     * @param string|null $smsUpExtendCode
+     * @param string|null $outId
+     * @return Result
+     * @throws ClientException
+     * @throws ServerException
+     */
+    public static function sendSms($phoneNumbers, string $templateCode, $templateParam, string $signName, string $smsUpExtendCode = null, string $outId = null): Result
+    {
+        if (is_array($phoneNumbers)) {
+            $phoneNumbers = implode(",", $phoneNumbers);
+        }
+        if (is_array($templateParam)) {
+            $templateParam = json_encode($templateParam);
+        }
+        $dySmsApi = Dysmsapi::v20170525()
+            ->sendSms()
+            ->withPhoneNumbers($phoneNumbers)
+            ->withTemplateCode($templateCode)
+            ->withTemplateParam($templateParam)
+            ->withSignName($signName);
+        if (!is_null($smsUpExtendCode)) {
+            $dySmsApi->withSmsUpExtendCode($smsUpExtendCode);
+        }
+        if (!is_null($outId)) {
+            $dySmsApi->withOutId($outId);
+        }
+        return $dySmsApi->request();
+    }
+
     /**
      * 宽带提速预检查
      * @param string $ipAddress IP地址
