@@ -13,10 +13,15 @@
         "ext-dom": "*",
         "ext-json": "*",
         "ext-libxml": "*",
-        "illuminate/support": "^5.0 || ^6.0 || ^7.0 || ^8.0",
-        "illuminate/bus": "^5.0 || ^6.0 || ^7.0 || ^8.0",
-        "illuminate/queue": "^5.0 || ^6.0 || ^7.0 || ^8.0",
-        "guzzlehttp/guzzle": "^6.5 || ^7.2"
+        "alibabacloud/sdk": "^1.8",
+        "illuminate/support": "^6.0 || ^7.0 || ^8.0",
+        "illuminate/bus": "^6.0 || ^7.0 || ^8.0",
+        "illuminate/queue": "^6.0 || ^7.0 || ^8.0"
+    },
+    "require-dev": {
+        "php": "^7.4|^8.0",
+        "dcat/laravel-admin": "2.*",
+        "laravel/framework": "^8.54"
     },
     "autoload": {
         "psr-4": {
@@ -25,16 +30,14 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "2.0-dev"
         },
         "laravel": {
             "providers": [
                 "Larva\\Aliyun\\AliyunServiceProvider"
-            ],
-            "aliases": {
-                "Aliyun": "Larva\\Aliyun\\Aliyun"
-            }
+            ]
         }
     },
+    "minimum-stability": "dev",
     "prefer-stable": true
 }

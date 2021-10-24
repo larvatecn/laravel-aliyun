@@ -8,10 +8,10 @@
 
 namespace Larva\Aliyun\Admin\Repositories;
 
+use AlibabaCloud\Domain\Domain as AliDomain;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Repositories\Repository;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Larva\Aliyun\Aliyun;
 
 /**
  * Class Domain
@@ -82,8 +82,7 @@ class Domain extends Repository
      */
     public function get(Grid\Model $model)
     {
-        /** @var \Larva\Aliyun\Services\Domain $domain */
-        $domain = Aliyun::get('domain');
+        $domain = AliDomain::v20180208();
 
         $currentPage = $model->getCurrentPage();
         $perPage = $model->getPerPage();

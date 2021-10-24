@@ -9,7 +9,7 @@
 namespace Larva\Aliyun\Admin\Forms;
 
 use Dcat\Admin\Widgets\Form;
-use Larva\Aliyun\Jobs\CdnPushObjectCacheJob;
+use Larva\Aliyun\Jobs\Cdn\PushObjectCacheJob;
 
 /**
  * CDN资源预热
@@ -28,7 +28,7 @@ class CdnPushForm extends Form
     {
         $urls = explode(PHP_EOL, trim($input['urls']));
         $area = trim($input['area']);
-        CdnPushObjectCacheJob::dispatch($urls, $area);
+        PushObjectCacheJob::dispatch($urls, $area);
         return $this->response()->success('任务委派成功!')->refresh();
     }
 

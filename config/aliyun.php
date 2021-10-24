@@ -1,45 +1,14 @@
 <?php
 
 return [
-    'access_id' => env('ALIYUN_ACCESS_ID'),
-    'access_key' => env('ALIYUN_ACCESS_KEY'),
-
-    'services' => [
-        'cdn' => [
-            'driver' => 'cdn',
-            'access_id' => env('ALIYUN_ACCESS_ID'),
-            'access_key' => env('ALIYUN_ACCESS_KEY'),
-        ],
-        'cloudpush' => [
-            'driver' => 'cloudPush',
-            'access_id' => env('ALIYUN_ACCESS_ID'),
-            'access_key' => env('ALIYUN_ACCESS_KEY'),
-        ],
-        'dns' => [
-            'driver' => 'dns',
-            'access_id' => env('ALIYUN_ACCESS_ID'),
-            'access_key' => env('ALIYUN_ACCESS_KEY'),
-        ],
-        'domain' => [
-            'driver' => 'domain',
-            'access_id' => env('ALIYUN_ACCESS_ID'),
-            'access_key' => env('ALIYUN_ACCESS_KEY')
-        ],
-        'httpdns' => [
-            'driver' => 'httpDns',
-            'access_id' => env('ALIYUN_ACCESS_ID'),
-            'access_key' => env('ALIYUN_ACCESS_KEY')
-        ],
-        'dm' => [
-            'driver' => 'dm',
-            'access_id' => env('ALIYUN_ACCESS_ID'),
-            'access_key' => env('ALIYUN_ACCESS_KEY')
-        ],
-        'snsu' => [
-            'driver' => 'snSu',
-            'access_id' => env('ALIYUN_ACCESS_ID'),
-            'access_key' => env('ALIYUN_ACCESS_KEY')
-        ],
+    'default' => [// 默认设置
+        'type' => 'access_key',
+        'region' => 'cn-beijing',
+        'access_id' => env('ALIBABA_CLOUD_ACCESS_KEY_ID'),
+        'access_key' => env('ALIBABA_CLOUD_ACCESS_KEY_SECRET'),
+        'connect_timeout' => 5,
+        'timeout' => 10,
+        'proxy' => null,
+        //'debug' => env('APP_DEBUG'),//仅控制台有效
     ],
-
 ];

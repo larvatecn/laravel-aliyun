@@ -9,7 +9,7 @@
 namespace Larva\Aliyun\Admin\Forms;
 
 use Dcat\Admin\Widgets\Form;
-use Larva\Aliyun\Jobs\CdnRefreshObjectCachesJob;
+use Larva\Aliyun\Jobs\Cdn\RefreshObjectCachesJob;
 
 /**
  * Class CdnRefreshForm
@@ -28,7 +28,7 @@ class CdnRefreshForm extends Form
     {
         $urls = explode(PHP_EOL, trim($input['urls']));
         $type = trim($input['type']);
-        CdnRefreshObjectCachesJob::dispatch($urls, $type);
+        RefreshObjectCachesJob::dispatch($urls, $type);
         return $this->response()->success('任务委派成功!')->refresh();
     }
 

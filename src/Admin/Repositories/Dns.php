@@ -8,10 +8,10 @@
 
 namespace Larva\Aliyun\Admin\Repositories;
 
+use AlibabaCloud\Alidns\Alidns;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Repositories\Repository;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Larva\Aliyun\Aliyun;
 
 /**
  * 域名DNS
@@ -27,19 +27,9 @@ class Dns extends Repository
      */
     public function get(Grid\Model $model)
     {
-        /** @var \Larva\Aliyun\Services\Dns $dns */
-        $dns = Aliyun::get('dns');
-
-        $currentPage = $model->getCurrentPage();
-        $perPage = $model->getPerPage();
-
-        $params = [
-            'PageNumber' => $currentPage,
-            'PageSize' => $perPage
-        ];
-
-        // 域名搜索
-        $data = $dns->describeDomains($params);
+        $data = Alidns::v20150109()->describeDomains()
+            ->withPageNumber($model->getCurrentPage())
+            ->withPageSize($model->getPerPage());
         return $model->makePaginator(
             $data['TotalCount'] ?? 0,
             $data['Domains']['Domain'] ?? []
