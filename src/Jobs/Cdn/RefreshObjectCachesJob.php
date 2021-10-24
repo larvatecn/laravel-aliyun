@@ -66,9 +66,12 @@ class RefreshObjectCachesJob implements ShouldQueue
      */
     public function handle()
     {
-        Cdn::v20180510()->refreshObjectCaches()
+        $response = Cdn::v20180510()->refreshObjectCaches()
             ->withObjectPath($this->urls)
             ->withObjectType(ucwords($this->objectType))
             ->request();
+        if (!$response->isSuccess()) {
+            $this->fail();
+        }
     }
 }

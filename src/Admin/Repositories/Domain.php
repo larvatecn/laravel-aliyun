@@ -79,27 +79,23 @@ class Domain extends Repository
      *
      * @param Grid\Model $model
      * @return LengthAwarePaginator
+     * @throws \AlibabaCloud\Client\Exception\ClientException
+     * @throws \AlibabaCloud\Client\Exception\ServerException
      */
     public function get(Grid\Model $model)
     {
-        $domain = AliDomain::v20180208();
-
-        $currentPage = $model->getCurrentPage();
-        $perPage = $model->getPerPage();
-
-        $params = [
-            'PageNum' => $currentPage,
-            'PageSize' => $perPage
-        ];
+        $query = AliDomain::v20180129()
+            ->queryDomainList()
+            ->withPageSize($model->getPerPage())
+            ->withPageNum($model->getCurrentPage());
         //排序
         $sort = $model->getSort();
         if (!is_null($sort[0]) && !is_null($sort[1])) {
-            $params['OrderKeyType'] = $sort[0];
-            $params['OrderByType'] = strtoupper($sort[1]);
+            $query->withOrderKeyType($sort[0]);
+            $query->withOrderByType(strtoupper($sort[1]));
         }
-
         // 域名搜索
-        $data = $domain->queryDomainList($params);
+        $data = $query->format('JSON')->request()->toArray();
         return $model->makePaginator(
             $data['TotalItemNum'] ?? 0,
             $data['Data']['Domain'] ?? []

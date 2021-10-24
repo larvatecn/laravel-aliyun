@@ -90,7 +90,7 @@ class UpdateDomainRecordJob implements ShouldQueue
      */
     public function handle()
     {
-        Alidns::v20150109()->updateDomainRecord()
+        $response = Alidns::v20150109()->updateDomainRecord()
             ->withRecordId($this->recordId)
             ->withRR($this->rr)
             ->withType($this->type)
@@ -98,5 +98,8 @@ class UpdateDomainRecordJob implements ShouldQueue
             ->withTTL($this->ttl)
             ->withLine($this->line)
             ->request();
+        if (!$response->isSuccess()) {
+            $this->fail();
+        }
     }
 }

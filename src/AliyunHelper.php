@@ -10,6 +10,7 @@ namespace Larva\Aliyun;
 
 use AlibabaCloud\Client\Exception\ClientException;
 use AlibabaCloud\Client\Exception\ServerException;
+use AlibabaCloud\Client\Result\Result;
 use AlibabaCloud\Snsuapi\Snsuapi;
 
 /**
@@ -18,16 +19,15 @@ use AlibabaCloud\Snsuapi\Snsuapi;
  */
 class AliyunHelper
 {
-
     /**
      * 宽带提速预检查
      * @param string $ipAddress IP地址
      * @param int $port 端口
-     * @return \AlibabaCloud\Client\Result\Result
+     * @return Result
      * @throws ClientException
      * @throws ServerException
      */
-    public static function SnsuBandPreCheck(string $ipAddress, int $port)
+    public static function SnsuBandPreCheck(string $ipAddress, int $port): Result
     {
         return Snsuapi::v20180709()->bandPrecheck()->withIpAddress($ipAddress)->withPort($port)
             ->request();

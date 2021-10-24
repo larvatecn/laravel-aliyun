@@ -48,9 +48,12 @@ class DeleteDomainRecord implements ShouldQueue
      */
     public function handle()
     {
-        Alidns::v20150109()
+        $response = Alidns::v20150109()
             ->deleteDomainRecord()
             ->withRecordId($this->recordId)
             ->request();
+        if (!$response->isSuccess()) {
+            $this->fail();
+        }
     }
 }

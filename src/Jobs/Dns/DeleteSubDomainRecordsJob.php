@@ -55,6 +55,9 @@ class DeleteSubDomainRecordsJob implements ShouldQueue
      */
     public function handle()
     {
-        Alidns::v20150109()->deleteSubDomainRecords()->withDomainName($this->domain)->withRR($this->rr)->request();
+        $response = Alidns::v20150109()->deleteSubDomainRecords()->withDomainName($this->domain)->withRR($this->rr)->request();
+        if (!$response->isSuccess()) {
+            $this->fail();
+        }
     }
 }

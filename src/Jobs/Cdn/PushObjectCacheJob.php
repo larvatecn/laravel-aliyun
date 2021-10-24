@@ -59,9 +59,12 @@ class PushObjectCacheJob implements ShouldQueue
      */
     public function handle()
     {
-        Cdn::v20180510()
+        $response = Cdn::v20180510()
             ->pushObjectCache()
             ->withObjectPath(implode("\n", $this->urls))
             ->request();
+        if (!$response->isSuccess()) {
+            $this->fail();
+        }
     }
 }
