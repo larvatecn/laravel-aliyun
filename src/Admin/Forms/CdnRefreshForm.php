@@ -47,7 +47,7 @@ class CdnRefreshForm extends Form
      *
      * @return array
      */
-    public function default()
+    public function default(): array
     {
         return [
             'urls' => '',

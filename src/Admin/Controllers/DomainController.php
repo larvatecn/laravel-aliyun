@@ -31,7 +31,7 @@ class DomainController extends AdminController
      *
      * @return Grid
      */
-    protected function grid()
+    protected function grid(): Grid
     {
         return Grid::make(new Domain(), function (Grid $grid) {
             $grid->column('DomainName', '域名');

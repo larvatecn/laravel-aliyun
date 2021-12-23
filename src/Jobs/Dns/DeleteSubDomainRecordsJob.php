@@ -40,7 +40,7 @@ class DeleteSubDomainRecordsJob implements ShouldQueue
      * @param string $domain
      * @param string $rr
      */
-    public function __construct(string $domain, $rr)
+    public function __construct(string $domain, string $rr)
     {
         $this->domain = $domain;
         $this->rr = $rr;

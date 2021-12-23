@@ -65,7 +65,7 @@ class UpdateDomainRecordJob implements ShouldQueue
      * Create a new job instance.
      *
      * @param string $recordId
-     * @param string $hostname
+     * @param string $rr
      * @param string $type
      * @param string $value
      * @param int $ttl

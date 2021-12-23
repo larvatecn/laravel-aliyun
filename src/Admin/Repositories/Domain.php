@@ -38,7 +38,7 @@ class Domain extends Repository
      * 域名状态
      * @return string[]
      */
-    public static function getAuditStatusLabels()
+    public static function getAuditStatusLabels(): array
     {
         return [
             static::AUDIT_STATUS_FAILED => '实名认证失败',
@@ -52,7 +52,7 @@ class Domain extends Repository
      * 域名状态
      * @return string[]
      */
-    public static function getStatusLabels()
+    public static function getStatusLabels(): array
     {
         return [
             static::STATUS_RENEW => '急需续费',
@@ -65,7 +65,7 @@ class Domain extends Repository
      * 获取域名类型
      * @return string[]
      */
-    public static function getTypeLabels()
+    public static function getTypeLabels(): array
     {
         return [
             static::TYPE_NEWGTLD => '新顶级域',
@@ -79,8 +79,6 @@ class Domain extends Repository
      *
      * @param Grid\Model $model
      * @return LengthAwarePaginator
-     * @throws \AlibabaCloud\Client\Exception\ClientException
-     * @throws \AlibabaCloud\Client\Exception\ServerException
      */
     public function get(Grid\Model $model)
     {

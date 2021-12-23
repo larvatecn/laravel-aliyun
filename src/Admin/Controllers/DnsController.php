@@ -31,7 +31,7 @@ class DnsController extends AdminController
      *
      * @return Grid
      */
-    protected function grid()
+    protected function grid(): Grid
     {
         return Grid::make(new Dns(), function (Grid $grid) {
             $grid->column('DomainId', 'ID');

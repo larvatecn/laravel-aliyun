@@ -29,7 +29,7 @@ class SendSmsJob implements ShouldQueue
      *
      * @var int
      */
-    public $tries = 2;
+    public int $tries = 2;
 
     /**
      * @var array|string
