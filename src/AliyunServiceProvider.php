@@ -57,7 +57,7 @@ class AliyunServiceProvider extends ServiceProvider
     }
 
     /**
-     * Setup the config.
+     * Set up the config.
      */
     protected function setupConfig()
     {
