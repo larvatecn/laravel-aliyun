@@ -1,42 +1,42 @@
 {
-    "name": "larva/laravel-aliyun",
-    "description": "This is a Laravel expansion for the Aliyun.",
-    "keywords": [
-        "Larva",
-        "laravel",
-        "aliyun"
-    ],
-    "type": "library",
-    "license": "MIT",
-    "require": {
-        "ext-simplexml": "*",
-        "ext-dom": "*",
-        "ext-json": "*",
-        "ext-libxml": "*",
-        "alibabacloud/sdk": "^1.8",
-        "illuminate/support": "^9.0|^10.0",
-        "illuminate/bus": "^9.0|^10.0",
-        "illuminate/queue": "^9.0|^10.0"
+  "name": "larva/laravel-aliyun",
+  "description": "This is a Laravel expansion for the Aliyun.",
+  "keywords": [
+    "Larva",
+    "laravel",
+    "aliyun"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "ext-simplexml": "*",
+    "ext-dom": "*",
+    "ext-json": "*",
+    "ext-libxml": "*",
+    "alibabacloud/sdk": "^1.8",
+    "illuminate/support": "^9.0|^10.0",
+    "illuminate/bus": "^9.0|^10.0",
+    "illuminate/queue": "^9.0|^10.0"
+  },
+  "require-dev": {
+    "php": "^8.0.2|^8.1",
+    "laravel/framework": "^9.0|^10.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Larva\\Aliyun\\": "src"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.0-dev"
     },
-    "require-dev": {
-        "php": "^7.4|^8.0",
-        "laravel/framework": "^9.0|^10.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Larva\\Aliyun\\": "src"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0-dev"
-        },
-        "laravel": {
-            "providers": [
-                "Larva\\Aliyun\\AliyunServiceProvider"
-            ]
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "laravel": {
+      "providers": [
+        "Larva\\Aliyun\\AliyunServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
