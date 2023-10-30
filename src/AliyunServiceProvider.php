@@ -7,7 +7,6 @@ namespace Larva\Aliyun;
 
 use AlibabaCloud\Client\AlibabaCloud;
 use AlibabaCloud\Client\Exception\ClientException;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -19,8 +18,9 @@ class AliyunServiceProvider extends ServiceProvider
 {
     /**
      * 注册阿里云客户端
+     * @throws ClientException
      */
-    public function register()
+    public function register(): void
     {
         $this->setupConfig();
 
@@ -51,7 +51,7 @@ class AliyunServiceProvider extends ServiceProvider
                     ->timeout($config['timeout'] ?? 10)
                     ->proxy($config['proxy']);
             } catch (ClientException $exception) {
-                Log::error($exception->getMessage(), $exception->getTrace());
+                throw new ClientException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
             }
         }
     }
@@ -59,7 +59,7 @@ class AliyunServiceProvider extends ServiceProvider
     /**
      * Set up the config.
      */
-    protected function setupConfig()
+    protected function setupConfig(): void
     {
         $source = realpath($raw = __DIR__ . '/../config/aliyun.php') ?: $raw;
 
