@@ -59,14 +59,14 @@ class SendSmsJob implements ShouldQueue
     protected string $outId;
 
     /**
-     * @param string|array $phoneNumbers
+     * @param array|string $phoneNumbers
      * @param string $templateCode
      * @param string|array $templateParam JSON格式的参数
      * @param string $signName
      * @param string|null $smsUpExtendCode
      * @param string|null $outId
      */
-    public function __construct($phoneNumbers, string $templateCode, $templateParam, string $signName, string $smsUpExtendCode = null, string $outId = null)
+    public function __construct(array|string $phoneNumbers, string $templateCode, $templateParam, string $signName, string $smsUpExtendCode = null, string $outId = null)
     {
         $this->phoneNumbers = $phoneNumbers;
         $this->templateCode = $templateCode;
@@ -83,7 +83,7 @@ class SendSmsJob implements ShouldQueue
      * @throws ClientException
      * @throws ServerException
      */
-    public function handle()
+    public function handle(): void
     {
         AliyunHelper::sendSms($this->phoneNumbers, $this->templateCode, $this->templateParam, $this->signName, $this->smsUpExtendCode, $this->outId);
     }

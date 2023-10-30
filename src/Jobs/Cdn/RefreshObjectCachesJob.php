@@ -31,7 +31,7 @@ class RefreshObjectCachesJob implements ShouldQueue
     /**
      * @var string|array
      */
-    protected $urls;
+    protected string|array $urls;
 
     /**
      * @var string 内容类型
@@ -44,7 +44,7 @@ class RefreshObjectCachesJob implements ShouldQueue
      * @param array|string $urls
      * @param string $objectType
      */
-    public function __construct($urls, string $objectType = 'File')
+    public function __construct(array|string $urls, string $objectType = 'File')
     {
         if (is_string($urls)) {
             $this->urls = [$urls];

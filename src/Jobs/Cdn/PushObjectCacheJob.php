@@ -24,7 +24,7 @@ class PushObjectCacheJob implements ShouldQueue
     /**
      * @var array
      */
-    protected $urls;
+    protected array $urls;
 
     /**
      * @var string 内容区域
@@ -34,10 +34,10 @@ class PushObjectCacheJob implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param string|array $urls
+     * @param array|string $urls
      * @param string $area
      */
-    public function __construct($urls, string $area = 'domestic')
+    public function __construct(array|string $urls, string $area = 'domestic')
     {
         if (is_string($urls)) {
             $this->urls = [$urls];

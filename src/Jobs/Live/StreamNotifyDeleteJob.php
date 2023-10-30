@@ -35,8 +35,9 @@ class StreamNotifyDeleteJob implements ShouldQueue
      * Execute the job.
      *
      * @return void
+     * @throws AliyunException
      */
-    public function handle()
+    public function handle(): void
     {
         try {
             Live::v20161101()->deleteLiveStreamsNotifyUrlConfig()

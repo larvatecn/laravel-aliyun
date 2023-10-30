@@ -19,7 +19,7 @@ class AliyunHelper
 {
     /**
      * 发送短信
-     * @param string|array $phoneNumbers
+     * @param array|string $phoneNumbers
      * @param string $templateCode
      * @param string|array $templateParam JSON格式的参数
      * @param string $signName
@@ -29,7 +29,7 @@ class AliyunHelper
      * @throws ClientException
      * @throws ServerException
      */
-    public static function sendSms($phoneNumbers, string $templateCode, $templateParam, string $signName, string $smsUpExtendCode = null, string $outId = null): Result
+    public static function sendSms(array|string $phoneNumbers, string $templateCode, $templateParam, string $signName, string $smsUpExtendCode = null, string $outId = null): Result
     {
         if (is_array($phoneNumbers)) {
             $phoneNumbers = implode(",", $phoneNumbers);
